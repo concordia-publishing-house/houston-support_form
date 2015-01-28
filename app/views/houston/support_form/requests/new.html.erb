@@ -1,0 +1,107 @@
+<%= render partial: "projects/header", locals: {project: @project, subtitle: "New Ticket for", without: %w{new_ticket keyboard_shortcuts}} %>
+
+<div id="support_form" class="container-fluid">
+  <div class="row-fluid">
+    <div class="span8">
+      <ul class="nav nav-pills">
+        <li class="active">
+          <a href="#feedback" data-toggle="tab">
+            <i class="fa fa-comment"></i>
+            <h4>Feedback</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#bug_report" data-toggle="tab">
+            <i class="fa fa-bug"></i>
+            <h4>Regression<span class="or">/</span>Error</h4>
+          </a>
+        </li>
+        <li>
+          <a href="#itsm" data-toggle="tab">
+            <i class="fa fa-fire-extinguisher"></i>
+            <h4>ITSM</h4>
+          </a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="feedback">
+          <form id="new_feedback_form" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="new_feedback_customer">Customer</label>
+              <div class="controls">
+                <input type="text" id="new_feedback_customer" name="customer" placeholder="e.g. john.doe@example.com or GM 00349061 "/>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="new_feedback_text">Text</label>
+              <div class="controls">
+                <textarea id="new_feedback_text" placeholder="Describe the customer's request. Include as much detail as you can about why they would like this change" name="text"></textarea>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="new_feedback_tags">Tags</label>
+              <div class="controls">
+                <input type="text" id="new_feedback_tags" class="feedback-new-tag" placeholder="You can separate several tags with commas" />
+              </div>
+            </div>
+          </form>
+
+          <div class="buttons">
+            <button type="button" id="clear_feedback" class="btn btn-default" data-dismiss="modal">Clear</button>
+            <button type="button" id="create_feedback" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+    
+    
+    
+        <div class="tab-pane" id="bug_report">
+          <form id="new_ticket_view" data-mode="type"></form>
+        </div>
+    
+    
+    
+        <div class="tab-pane" id="itsm">
+          <p>At this time, you can't file an ITSM with Houston</p>
+          <p><a href="http://portal/SupportCall.aspx?SupportCallMode=Add">Click here to visit the portal</a></p>
+          <p>Start your summary with <b>[<%= @project.slug %>]</b></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="help span4">
+      <h4>Need help choosing?</h4>
+      <dl>
+        <dd><i class="fa fa-fire-extinguisher"></i></dd>
+        <dt>Pick <b>ITSM</b> to request Tier 2 support from Meagan or EP</dt>
+      
+        <dd><i class="fa fa-bug"></i></dd>
+        <dt>Pick <b>Regression or Error</b> if a recent release broke existing functionality or if the customer is seeing an error message</dt>
+      
+        <dd><i class="fa fa-comment"></i></dd>
+        <dt>Everything else is feedback!</dt>
+      </dl>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascripts do %>
+<script type="text/javascript">
+  $(function() {
+    var project = {
+      slug: <%= raw @project.slug.to_json %>,
+      ticketTrackerName: <%= raw @project.ticket_tracker_name.to_json %><%# so that we can log in %>
+    };
+    new Houston.SupportForm.View({
+      tags: <%=raw @tags.to_json %>,
+      project: project
+    }).render();
+    new Houston.SupportForm.NewTicketView({
+      tickets: <%= raw @tickets.to_json %>,
+      project: project
+    }).render();
+  });
+</script>
+<% end %>

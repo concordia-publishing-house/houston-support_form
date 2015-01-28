@@ -1,0 +1,99 @@
+#support_form {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  #feedback {
+    .control { width: 100%; }
+  }
+  
+  input { height: 32px; }
+  input, textarea {
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .buttons {
+    text-align: right;
+  }
+  
+  // like .release-form, could be global
+  .control-label {
+    font-weight: bold;
+    color: #777;
+    width: 80px;
+  }
+  
+  .controls {
+    padding-left: 100px;
+  }
+  
+  #new_ticket_view {
+    &[data-mode="type"]::after {
+      content: '';
+    }
+    
+    width: 90%;
+    margin: 0 auto;
+    
+    #ticket_suggestions { display: none; }
+    
+    #ticket_suggestions > ol {
+      margin: 0;
+    }
+  }
+  
+  .nav-pills {
+    text-align: right;
+  }
+  
+  .nav-pills > li {
+    min-width: 140px;
+    vertical-align: top;
+  }
+  
+  .nav-pills > li > a {
+    text-align: center;
+    display: block;
+    
+    i {
+      font-size: 2em;
+      display: block;
+    }
+    
+    h4 {
+      margin-bottom: 6px;
+    }
+    
+    h4 .or {
+      font-weight: normal;
+    }
+    
+    p {
+      width: 168px;
+      margin: 0 auto;
+    }
+  }
+  
+  #itsm {
+    text-align: right;
+  }
+  
+  .help {
+    padding-left: 2em;
+    
+    h4 {
+      font-family: 'Rock Salt';
+      margin: 2em 0 0 50px;
+    }
+    dl { max-width: 200px; }
+    dd {
+      font-size: 2em;
+      float: left;
+      margin: 0.25em 0.5em 0 0.25em;
+    }
+    dt {
+      font-weight: normal;
+      margin: 0 0 1em 50px;
+    }
+  }
+}
