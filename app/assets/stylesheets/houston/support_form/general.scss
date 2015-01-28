@@ -79,13 +79,15 @@
   }
   
   .help {
-    padding-left: 2em;
+    padding-left: 1em;
     
-    h4 {
-      font-family: 'Rock Salt';
-      margin: 2em 0 0 50px;
+    dl {
+      max-width: 200px;
+      padding: 1em;
+      background: #e4e4e4;
+      border-radius: 4px;
+      margin-top: 4em;
     }
-    dl { max-width: 200px; }
     dd {
       font-size: 2em;
       float: left;
