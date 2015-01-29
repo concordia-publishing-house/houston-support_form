@@ -6,7 +6,8 @@ class Houston.SupportForm.View extends Backbone.View
     'shown a[data-toggle="tab"]': 'tabSelected'
     'click #create_feedback': 'createComment'
     'click #clear_feedback': 'clearComment'
-    'keydown #new_feedback_form input': 'keydownNewFeedback'
+    'keydown #new_feedback_text': 'keydownNewFeedback'
+    'keydown #new_feedback_tags': 'keydownNewFeedback'
   
   initialize: ->
     @project = @options.project
