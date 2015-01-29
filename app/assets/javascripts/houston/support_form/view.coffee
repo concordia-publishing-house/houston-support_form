@@ -14,6 +14,7 @@ class Houston.SupportForm.View extends Backbone.View
   
   render: ->
     $('#new_feedback_tags').autocompleteTags(@tags)
+    @$el.find('[data-toggle="tooltip"]').tooltip()
   
   tabSelected: (e)->
     $a = $(e.target)

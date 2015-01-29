@@ -1,9 +1,10 @@
 #support_form {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
   
-  #feedback {
-    .control { width: 100%; }
+  .slim {
+    max-width: 640px;
+    margin: 0 auto;
   }
   
   input { height: 32px; }
@@ -20,20 +21,37 @@
   .control-label {
     font-weight: bold;
     color: #777;
-    width: 80px;
   }
   
-  .controls {
-    padding-left: 100px;
+  #new_feedback_text {
+    height: 5em;
+  }
+  
+  #feedback .help {
+    font-size: 0.88em;
+    line-height: 1.33em;
+    padding-left: 1.5em;
+    position: relative;
+    
+    &.overlap-below { margin-bottom: -3em; }
+    
+    &::before {
+      content: '〈';
+      position: absolute;
+      font-size: 1.5em;
+      font-weight: bold;
+      left: -0.4em;
+      top: 0.45em;
+      width: 1em;
+      display: block;
+      color: #777;
+    }
   }
   
   #new_ticket_view {
     &[data-mode="type"]::after {
       content: '';
     }
-    
-    width: 90%;
-    margin: 0 auto;
     
     #ticket_suggestions { display: none; }
     
@@ -43,7 +61,7 @@
   }
   
   .nav-pills {
-    text-align: right;
+    text-align: center;
   }
   
   .nav-pills > li {
@@ -71,31 +89,6 @@
     p {
       width: 168px;
       margin: 0 auto;
-    }
-  }
-  
-  #itsm {
-    text-align: right;
-  }
-  
-  .help {
-    padding-left: 1em;
-    
-    dl {
-      max-width: 200px;
-      padding: 1em;
-      background: #e4e4e4;
-      border-radius: 4px;
-      margin-top: 4em;
-    }
-    dd {
-      font-size: 2em;
-      float: left;
-      margin: 0.25em 0.5em 0 0.25em;
-    }
-    dt {
-      font-weight: normal;
-      margin: 0 0 1em 50px;
     }
   }
 }
