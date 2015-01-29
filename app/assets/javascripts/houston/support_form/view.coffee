@@ -36,12 +36,14 @@ class Houston.SupportForm.View extends Backbone.View
     params.tags = $('#new_feedback_tags').selectedTags()
     $.post "/feedback/by_project/#{@project.slug}", params
       .success =>
-        @clearComment()
         alertify.success "Comment created"
+        $('#new_feedback_tags').val('')
+        $('#new_feedback_text').val('').focus()
       .error ->
         console.log 'error', arguments
 
   clearComment: (e)->
     e.preventDefault() if e
     $('#new_feedback_form').reset()
+    $('#new_feedback_customer').focus().select()
 
