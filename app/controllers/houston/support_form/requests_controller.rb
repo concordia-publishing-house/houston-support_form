@@ -1,6 +1,6 @@
 module Houston
   module SupportForm
-    class RequestsController < ApplicationController
+    class RequestsController < Houston::SupportForm::ApplicationController
       attr_reader :project
       before_filter :authenticate_user!
       
