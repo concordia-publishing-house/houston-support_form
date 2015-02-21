@@ -16,6 +16,7 @@ class Houston.SupportForm.View extends Backbone.View
   render: ->
     $('#new_feedback_tags').autocompleteTags(@tags)
     @$el.find('[data-toggle="tooltip"]').tooltip()
+    $('#new_feedback_form .uploader').supportImages()
     window.setTimeout ->
         $('.tab-pane.active input:first').focus().select()
       , 0

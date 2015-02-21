@@ -40,6 +40,7 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
         @$summary.putCursorAtEnd()
     @$summary.keyup onTicketSummaryChange
     @$summary.change onTicketSummaryChange
+    @$el.find('.uploader').supportImages()
     $('#ticket_description').focus =>
       @$el.attr('data-mode', 'description')
     
