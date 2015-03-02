@@ -17,6 +17,10 @@
     text-align: right;
   }
   
+  .tab-content {
+    overflow: visible;
+  }
+  
   // like .release-form, could be global
   .control-label {
     font-weight: bold;
