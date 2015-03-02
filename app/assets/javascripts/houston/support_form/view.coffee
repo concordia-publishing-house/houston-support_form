@@ -8,6 +8,9 @@ class Houston.SupportForm.View extends Backbone.View
     'click #clear_feedback': 'clearComment'
     'keydown #new_feedback_text': 'keydownNewFeedback'
     'keydown #new_feedback_tags': 'keydownNewFeedback'
+    'click #create_itsm': 'createITSM'
+    'click #clear_itsm': 'clearITSM'
+    'keydown #new_itsm_text': 'keydownNewITSM'
   
   initialize: ->
     @project = @options.project
@@ -17,6 +20,8 @@ class Houston.SupportForm.View extends Backbone.View
     $('#new_feedback_tags').autocompleteTags(@tags)
     @$el.find('[data-toggle="tooltip"]').tooltip()
     $('#new_feedback_form .uploader').supportImages()
+    $('#new_itsm_form .uploader').supportImages()
+    $('#new_itsm_summary').val("[#{@project.slug}] ").putCursorAtEnd()
     window.setTimeout ->
         $('.tab-pane.active input:first').focus().select()
       , 0
@@ -47,4 +52,31 @@ class Houston.SupportForm.View extends Backbone.View
     e.preventDefault() if e
     $('#new_feedback_form').reset()
     $('#new_feedback_customer').focus().select()
+
+
+
+  keydownNewITSM: (e)->
+    if e.keyCode is 13 and (e.metaKey or e.ctrlKey)
+      @createITSM(e)
+  
+  createITSM: (e)->
+    e.preventDefault() if e
+    
+    params = $('#new_itsm_form').serializeObject()
+    params.text = App.mdown(params.text)
+    $buttons = $('#create_itsm, #clear_itsm')
+    $buttons.prop('disabled', true)
+    $.post "/itsm/issues", params
+      .success (response)=>
+        $buttons.prop('disabled', false)
+        alertify.success "ITSM created"
+        @clearITSM()
+      .error ->
+        $buttons.prop('disabled', false)
+        console.log 'error', arguments
+
+  clearITSM: (e)->
+    e.preventDefault() if e
+    $('#new_itsm_form').reset()
+    $('#new_itsm_summary').val("[#{@project.slug}] ").putCursorAtEnd()
 

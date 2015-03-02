@@ -73,11 +73,28 @@
 
 
     <div class="tab-pane slim" id="itsm">
-      <p>
-        At this time, you can't file an ITSM with Houston
-        <a href="http://portal/SupportCall.aspx?SupportCallMode=Add">Click here to visit the portal</a>
-      </p>
-      <p>Start your summary with <b>[<%= @project.slug %>]</b></p>
+      <form id="new_itsm_form" class="container-fluid">
+        <div class="row-fluid">
+          <label class="control-label span2" for="new_itsm_summary">Summary</label>
+          <div class="span10 controls">
+            <input type="text" id="new_itsm_summary" name="summary" />
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <label class="control-label span2" for="new_itsm_text">Text</label>
+          <div class="span10 controls">
+            <div class="uploader">
+              <textarea id="new_itsm_text" name="text"></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="buttons">
+        <button type="button" id="clear_itsm" class="btn btn-default" data-dismiss="modal">Clear</button>
+        <button type="button" id="create_itsm" class="btn btn-primary">Submit</button>
+      </div>
     </div>
   </div>
 </div>
