@@ -33,7 +33,7 @@ module Houston
         # END COPIED FROM project_tickets_controller#new
         
         # BEGIN COPIED FROM project_feedback_controller#index
-        @tags = Houston::Feedback::Comment.for_project(project).tags_by_project[project.slug]
+        @tags = Houston::Feedback::Comment.for_project(project).tags
         # END COPIED FROM project_feedback_controller#index
       end
       
