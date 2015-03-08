@@ -66,7 +66,7 @@ class Houston.SupportForm.View extends Backbone.View
     params.text = App.mdown(params.text)
     $buttons = $('#create_itsm, #clear_itsm')
     $buttons.prop('disabled', true)
-    $.post "/itsm/issues", params
+    $.post "/support_form/itsm", params
       .success (response)=>
         $buttons.prop('disabled', false)
         alertify.success "ITSM created"
