@@ -7,11 +7,11 @@ require "houston/support_form/version"
 Gem::Specification.new do |s|
   s.name        = "houston-support_form"
   s.version     = Houston::SupportForm::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Houston SupportForm."
-  s.description = "TODO: Description of Houston SupportForm."
+  s.authors     = ["Bob Lail"]
+  s.email       = ["bob.lailfamily@gmail.com"]
+  s.homepage    = "https://github.com/concordia-publishing-house/houston-support_form"
+  s.summary     = "Adds a form for CTS to enter either Feedback or ITSMs"
+  s.description = "Adds a form for CTS to enter either Feedback or ITSMs"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
