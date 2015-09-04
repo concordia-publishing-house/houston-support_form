@@ -64,6 +64,12 @@ class Houston.SupportForm.View extends Backbone.View
     
     params = $('#new_itsm_form').serializeObject()
     params.text = App.mdown(params.text)
+    
+    [_, projectSlug, summary] = params.summary.match(/^\s*\[([^\]]+)\]\s*(.*)$/) || [null, null, params.summary]
+    if summary.length is 0
+      alertify.error "Please write a summary for your ITSM"
+      return
+    
     $buttons = $('#create_itsm, #clear_itsm')
     $buttons.prop('disabled', true)
     $.post "/support_form/itsm", params
