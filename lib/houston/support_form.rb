@@ -4,10 +4,12 @@ require "houston/support_form/configuration"
 module Houston
   module SupportForm
     extend self
-    
-    attr_reader :config
-    
+
+    def config(&block)
+      @configuration ||= SupportForm::Configuration.new
+      @configuration.instance_eval(&block) if block_given?
+      @configuration
+    end
+
   end
-  
-  SupportForm.instance_variable_set :@config, SupportForm::Configuration.new
 end
