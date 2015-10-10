@@ -1,8 +1,10 @@
 Houston::SupportForm::Engine.routes.draw do
 
-  get "" => "requests#index"
-  get "/:project" => "requests#new", as: :project_support
+  scope "support_form" do
+    get "" => "requests#index"
+    get "/:project" => "requests#new", as: :project_support
 
-  post "/itsm" => "itsms#create"
+    post "/itsm" => "itsms#create"
+  end
 
 end
