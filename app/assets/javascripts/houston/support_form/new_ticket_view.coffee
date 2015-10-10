@@ -1,22 +1,22 @@
 @Houston.SupportForm = Houston.SupportForm || {}
 class @Houston.SupportForm.NewTicketView extends Backbone.View
   el: '#new_ticket_view'
-  
+
   BUG_DESCRIPTION: '''
 ### Steps to Test
- - 
+ -
 
 ### What happens
- - 
+ -
 
 ### What should happen
- - 
+ -
   '''
-  
+
   events:
     'click #reset_ticket': 'resetNewTicket'
     'click #create_ticket': 'createNewTicket'
-  
+
   initialize: ->
     @$el.html HandlebarsTemplates['houston/support_form/new_ticket']()
     @project = @options.project
@@ -27,7 +27,7 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
     @lastSearch = ''
     Mousetrap.bindScoped '#ticket_summary, #ticket_description', 'mod+enter', (e)=>
       @$el.find('#create_ticket').click() if @$el.find(':focus').length > 0
-  
+
   render: ->
     onTicketSummaryChange = _.bind(@onTicketSummaryChange, @)
     @$summary.keydown (e)=>
@@ -43,20 +43,20 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
     @$el.find('.uploader').supportImages()
     $('#ticket_description').focus =>
       @$el.attr('data-mode', 'description')
-    
+
     view = @
-    
+
     @$summary
       .attr('autocomplete', 'off')
       .focus()
       .putCursorAtEnd()
     @onTicketSummaryChange()
-  
-  
+
+
   onTicketSummaryChange: ->
     @nextSearch = @$summary.val()
     @updateSuggestions()
-  
+
   updateSuggestions: ->
     unless @lastSearch is @nextSearch
       @$el.find('#ticket_summary_fill').html @nextSearch
@@ -68,9 +68,9 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
         @$suggestions.empty().append list
       else
         $('#ticket_suggestions').hide()
-  
-  
-  
+
+
+
   resetNewTicket: (e)->
     e?.preventDefault()
     @$summary.val ''
@@ -78,17 +78,17 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
     $('#ticket_description').val ''
     @hideNewTicket()
     @$summary.focus()
-  
+
   createNewTicket: (e)->
     e?.preventDefault()
     attributes = @$el.serializeObject()
     attributes['ticket[summary]'] = '[bug] ' + attributes['ticket[summary]']
     $('#new_feedback_tags')
     @$el.disable()
-    
+
     xhr = $.post "/projects/#{@project.slug}/tickets", attributes
     xhr.complete => @$el.enable()
-    
+
     xhr.success (ticket)=>
       @tickets.push(ticket)
       @resetNewTicket()
@@ -96,7 +96,7 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
       @$el.enable()
       @options.onCreate(ticket) if @options.onCreate
       $(document).trigger 'ticket:create', [ticket]
-    
+
     xhr.error (response)=>
       errors = Errors.fromResponse(response)
       if errors.missingCredentials or errors.invalidCredentials
@@ -112,10 +112,10 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
     options ?= {}
     animate = options.animate ? true
     $('#ticket_suggestions').hide()
-    
+
     unless $('#ticket_description').val()
       $('#ticket_description').val(@BUG_DESCRIPTION)
-    
+
     if animate
       $('.new-ticket-full').slideDown 200, ->
         $('#ticket_description').autosize()

@@ -1,7 +1,7 @@
 @Houston.SupportForm = Houston.SupportForm || {}
 class Houston.SupportForm.View extends Backbone.View
   el: '#support_form'
-  
+
   events:
     'shown a[data-toggle="tab"]': 'tabSelected'
     'click #create_feedback': 'createComment'
@@ -11,11 +11,11 @@ class Houston.SupportForm.View extends Backbone.View
     'click #create_itsm': 'createITSM'
     'click #clear_itsm': 'clearITSM'
     'keydown #new_itsm_text': 'keydownNewITSM'
-  
+
   initialize: ->
     @project = @options.project
     @tags = @options.tags
-  
+
   render: ->
     $('#new_feedback_tags').autocompleteTags(@tags)
     @$el.find('[data-toggle="tooltip"]').tooltip()
@@ -25,19 +25,19 @@ class Houston.SupportForm.View extends Backbone.View
     window.setTimeout ->
         $('.tab-pane.active input:first').focus().select()
       , 0
-  
+
   tabSelected: (e)->
     $a = $(e.target)
     $tab = $ $a.attr('href')
     $tab.find('input:first').focus()
-  
+
   keydownNewFeedback: (e)->
     if e.keyCode is 13 and (e.metaKey or e.ctrlKey)
       @createComment(e)
-  
+
   createComment: (e)->
     e.preventDefault() if e
-    
+
     params = $('#new_feedback_form').serializeObject()
     params.tags = $('#new_feedback_tags').selectedTags()
     $.post "/feedback/by_project/#{@project.slug}", params
@@ -58,18 +58,18 @@ class Houston.SupportForm.View extends Backbone.View
   keydownNewITSM: (e)->
     if e.keyCode is 13 and (e.metaKey or e.ctrlKey)
       @createITSM(e)
-  
+
   createITSM: (e)->
     e.preventDefault() if e
-    
+
     params = $('#new_itsm_form').serializeObject()
     params.text = App.mdown(params.text)
-    
+
     [_, projectSlug, summary] = params.summary.match(/^\s*\[([^\]]+)\]\s*(.*)$/) || [null, null, params.summary]
     if summary.length is 0
       alertify.error "Please write a summary for your ITSM"
       return
-    
+
     $buttons = $('#create_itsm, #clear_itsm')
     $buttons.prop('disabled', true)
     $.post "/support_form/itsm", params
@@ -85,4 +85,3 @@ class Houston.SupportForm.View extends Backbone.View
     e.preventDefault() if e
     $('#new_itsm_form').reset()
     $('#new_itsm_summary').val("[#{@project.slug}] ").putCursorAtEnd()
-

@@ -1,39 +1,39 @@
 #support_form {
   max-width: 720px;
   margin: 0 auto;
-  
+
   input { height: 32px; }
   input, textarea {
     box-sizing: border-box;
     width: 100%;
   }
-  
+
   .buttons {
     text-align: right;
   }
-  
+
   .tab-content {
     overflow: visible;
   }
-  
+
   // like .release-form, could be global
   .control-label {
     font-weight: bold;
     color: #777;
     line-height: 30px;
   }
-  
+
   #new_feedback_text { height: 10em; }
   #new_itsm_text { height: 13.5em; }
-  
+
   #feedback .help {
     font-size: 0.88em;
     line-height: 1.33em;
     padding-left: 1.5em;
     position: relative;
-    
+
     &.overlap-below { margin-bottom: -3em; }
-    
+
     &::before {
       content: '〈';
       position: absolute;
@@ -46,45 +46,45 @@
       color: #777;
     }
   }
-  
+
   #new_ticket_view {
     &[data-mode="type"]::after {
       content: '';
     }
-    
+
     #ticket_suggestions { display: none; }
-    
+
     #ticket_suggestions > ol {
       margin: 0;
     }
   }
-  
+
   .nav-pills {
     text-align: center;
   }
-  
+
   .nav-pills > li {
     min-width: 140px;
     vertical-align: top;
   }
-  
+
   .nav-pills > li > a {
     text-align: center;
     display: block;
-    
+
     i {
       font-size: 2em;
       display: block;
     }
-    
+
     h4 {
       margin-bottom: 6px;
     }
-    
+
     h4 .or {
       font-weight: normal;
     }
-    
+
     p {
       width: 168px;
       margin: 0 auto;
