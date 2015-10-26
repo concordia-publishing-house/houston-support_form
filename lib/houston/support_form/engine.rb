@@ -1,15 +1,15 @@
+require "houston/support_form/railtie"
+
 module Houston
   module SupportForm
     class Engine < ::Rails::Engine
       isolate_namespace Houston::SupportForm
 
-      # Enabling assets precompiling under rails 3.1
-      if Rails.version >= '3.1'
-        initializer :assets do |config|
-          Rails.application.config.assets.precompile += %w(
-            houston/support_form/application.js
-            houston/support_form/application.css )
-        end
+      # Precompile this modules assets
+      initializer :assets do |config|
+        Rails.application.config.assets.precompile += %w(
+          houston/support_form/application.js
+          houston/support_form/application.css )
       end
 
       # Include the Engine's migrations with the Application

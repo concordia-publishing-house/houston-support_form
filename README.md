@@ -5,15 +5,21 @@ TODO: Summary of Houston SupportForm.
 
 ## Installation
 
-In your [Houston](https://github.com/houstonmc/houston) `config/config.rb` file, add:
+In your `Gemfile`, add:
 
-    use :support_form
+    gem "houston-support_form"
+
+And in `config/main.rb`, add:
+
+```ruby
+use :support_form do
+  # TODO: specify configuration options for Houston::SupportForm here
+end
+```
 
 And then execute:
 
     $ bundle
-
-Run Houston and you can navigate to your support_form at the path '/support_form'
 
 
 ## Contributing
