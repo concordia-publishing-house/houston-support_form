@@ -12,13 +12,14 @@ Gem::Specification.new do |spec|
 
   spec.summary     = "Adds a form for CTS to enter either Feedback or ITSMs"
   spec.description = "Adds a form for CTS to enter either Feedback or ITSMs"
-  spec.homepage    = "https://github.com/concordia-publishing-house/houston-support_form"
+  spec.homepage    = "https://github.com/cph/houston-support_form"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.require_paths = ["lib"]
   spec.test_files = Dir["test/**/*"]
 
-  spec.add_development_dependency "bundler", "~> 1.10.6"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "houston-core", ">= 0.5.3"
+  spec.add_dependency "houston-core", ">= 0.7.0.beta2"
+
+  spec.add_development_dependency "bundler", "~> 1.11.2"
+  spec.add_development_dependency "rake", "~> 11.2"
 end
