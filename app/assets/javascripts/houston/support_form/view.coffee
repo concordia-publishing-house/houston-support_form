@@ -12,7 +12,8 @@ class Houston.SupportForm.View extends Backbone.View
     'click #clear_itsm': 'clearITSM'
     'keydown #new_itsm_text': 'keydownNewITSM'
 
-  initialize: ->
+  initialize: (options)->
+    @options = options
     @project = @options.project
     @tags = @options.tags
 

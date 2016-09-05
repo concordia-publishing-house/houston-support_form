@@ -17,7 +17,8 @@ class @Houston.SupportForm.NewTicketView extends Backbone.View
     'click #reset_ticket': 'resetNewTicket'
     'click #create_ticket': 'createNewTicket'
 
-  initialize: ->
+  initialize: (options)->
+    @options = options
     @$el.html HandlebarsTemplates['houston/support_form/new_ticket']()
     @project = @options.project
     @tickets = new Tickets(@options.tickets)
