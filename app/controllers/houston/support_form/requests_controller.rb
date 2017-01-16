@@ -14,7 +14,7 @@ module Houston
 
         # BEGIN COPIED FROM project_tickets_controller#new
         unless @project.has_ticket_tracker?
-          render template: "project_tickets/no_ticket_tracker"
+          render template: "houston/tickets/project_tickets/no_ticket_tracker"
           return
         end
 
