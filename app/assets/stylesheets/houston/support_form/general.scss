@@ -47,18 +47,6 @@
     }
   }
 
-  #new_ticket_view {
-    &[data-mode="type"]::after {
-      content: '';
-    }
-
-    #ticket_suggestions { display: none; }
-
-    #ticket_suggestions > ol {
-      margin: 0;
-    }
-  }
-
   .nav-pills {
     text-align: center;
   }
