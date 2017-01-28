@@ -98,10 +98,6 @@
       tags: <%=raw @tags.to_json %>,
       project: project
     }).render();
-    new Houston.SupportForm.NewTicketView({
-      tickets: <%= raw @tickets.to_json %>,
-      project: project
-    }).render();
   });
 </script>
 <% end %>
