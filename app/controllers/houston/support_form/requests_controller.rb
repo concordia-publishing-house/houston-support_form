@@ -2,7 +2,7 @@ module Houston
   module SupportForm
     class RequestsController < Houston::SupportForm::ApplicationController
       attr_reader :project
-      before_filter :authenticate_user!
+      before_action :authenticate_user!
 
       def index
         @projects = followed_projects
