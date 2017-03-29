@@ -10,6 +10,7 @@ Houston.config do
 
   # Give dummy values to these required fields.
   host "houston.test.com"
+  secret_key_base "c72f10fdfe7fcfc227bc6e63599d85"
   mailer_sender "houston@test.com"
 
   # Houston still hard-codes knowledge of these Roles.
